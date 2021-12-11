@@ -359,8 +359,6 @@ const patternMaps = patternsList
   .map((patterns) => patterns.map(sortString))
   .map(findPatterns);
 
-//console.log(patternMaps);
-
 const sum = numbersList
   .map((numbers) => numbers.map((number) => sortString(number)))
   .map((numbers, i) =>
