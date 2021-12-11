@@ -1000,24 +1000,28 @@ const dataSet = [
   "000011011001",
   "000000100001",
 ];
-const bitsSet = dataSet.slice().map(data => data.split('').map(x => parseInt(x)));
+const bitsSet = dataSet
+  .slice()
+  .map((data) => data.split("").map((x) => parseInt(x)));
 const bitsLength = 12;
-const binaryToDecimal = (array) => array.reduce(
-    (sum, current, index) => sum + current*Math.pow(2, array.length-1-index),
-    0);
+const binaryToDecimal = (array) =>
+  array.reduce(
+    (sum, current, index) =>
+      sum + current * Math.pow(2, array.length - 1 - index),
+    0
+  );
 
 const findMostCommonBit = (bitsSet, index) => {
-    var oneCount = 0;
-    bitsSet.forEach(bits => {
-        oneCount += bits[index];
-    });
-    return (2*oneCount >= bitsSet.length) ? 1 : 0;
-}
+  var oneCount = 0;
+  bitsSet.forEach((bits) => {
+    oneCount += bits[index];
+  });
+  return 2 * oneCount >= bitsSet.length ? 1 : 0;
+};
 
 //part 1
 let gamma = new Array(bitsLength).fill(0);
 let epsilon = new Array(bitsLength).fill(0);
-
 
 // keeping the one's or zero's count would work on a data stream (infinite data set)
 /*
@@ -1035,29 +1039,29 @@ onesCount.forEach((countOne, index) => {
 });
 */
 
-for(let i=0; i<bitsLength; i++){
-    gamma[i] = findMostCommonBit(bitsSet, i);
-    epsilon[i] = gamma[i] ^ 1;
+for (let i = 0; i < bitsLength; i++) {
+  gamma[i] = findMostCommonBit(bitsSet, i);
+  epsilon[i] = gamma[i] ^ 1;
 }
 
-console.log(binaryToDecimal(gamma)*binaryToDecimal(epsilon));
+console.log(binaryToDecimal(gamma) * binaryToDecimal(epsilon));
 
 // part 2
-// This does not work on a infinite data set. 
-let oxygen = bitsSet.map(bits => bits.slice());
+// This does not work on a infinite data set.
+let oxygen = bitsSet.map((bits) => bits.slice());
 let currnetIndex = 0;
-while(oxygen.length>1 && currnetIndex < bitsLength){
-    const mostCommonBit = findMostCommonBit(oxygen,currnetIndex);
-    oxygen = oxygen.filter(bits => bits[currnetIndex] == mostCommonBit);
-    currnetIndex++;
+while (oxygen.length > 1 && currnetIndex < bitsLength) {
+  const mostCommonBit = findMostCommonBit(oxygen, currnetIndex);
+  oxygen = oxygen.filter((bits) => bits[currnetIndex] == mostCommonBit);
+  currnetIndex++;
 }
 
-let co2 = bitsSet.map(bits => bits.slice());
+let co2 = bitsSet.map((bits) => bits.slice());
 currnetIndex = 0;
-while(co2.length>1 && currnetIndex < bitsLength){
-    const leastCommonBit = findMostCommonBit(co2,currnetIndex) ^ 1;
-    co2 = co2.filter(bits => bits[currnetIndex] == leastCommonBit);
-    currnetIndex++;
+while (co2.length > 1 && currnetIndex < bitsLength) {
+  const leastCommonBit = findMostCommonBit(co2, currnetIndex) ^ 1;
+  co2 = co2.filter((bits) => bits[currnetIndex] == leastCommonBit);
+  currnetIndex++;
 }
 
-console.log(binaryToDecimal(oxygen[0])*binaryToDecimal(co2[0]));
+console.log(binaryToDecimal(oxygen[0]) * binaryToDecimal(co2[0]));
