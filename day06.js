@@ -10,7 +10,7 @@ const initialStates = [
   5, 3, 4, 3, 5, 1, 2, 1, 1, 4, 1, 3, 5, 1, 4, 1, 2, 4, 3, 1, 5, 1, 1, 2, 2, 4,
   2, 3, 1, 1, 1, 5, 2, 1, 4, 1, 1, 1, 4, 1, 3, 3, 2, 4, 1, 4, 2, 5, 1, 5, 2, 1,
   4, 1, 3, 1, 2, 5, 5, 4, 1, 2, 3, 3, 2, 2, 1, 3, 3, 1, 4, 4, 1, 1, 4, 1, 1, 5,
-  1, 2, 4, 2, 1, 4, 1, 1, 4, 3, 5, 1, 2, 1
+  1, 2, 4, 2, 1, 4, 1, 1, 4, 3, 5, 1, 2, 1,
 ];
 
 //const initialStates = [3,4,3,1,2];
@@ -18,44 +18,44 @@ const initialStates = [
 const stateCounts = new Array(9).fill(0); // 0 => 8
 
 const increaseStateCount = (state, n) => {
-    stateCounts[state] += n
-}
+  stateCounts[state] += n;
+};
 
 const decreaseStateCount = (state, n) => {
-    stateCounts[state] = Math.max(0, stateCounts[state]-n);
-}
+  stateCounts[state] = Math.max(0, stateCounts[state] - n);
+};
 
 const leftShift = () => {
-    for(let i=0; i<stateCounts.length-1; i++){
-        stateCounts[i] = stateCounts[i+1];
-    }
-    stateCounts[stateCounts.length-1] = 0;
-}
+  for (let i = 0; i < stateCounts.length - 1; i++) {
+    stateCounts[i] = stateCounts[i + 1];
+  }
+  stateCounts[stateCounts.length - 1] = 0;
+};
 
-const countStates = () => stateCounts.reduce((sum, cur)=> sum + cur, 0);
+const countStates = () => stateCounts.reduce((sum, cur) => sum + cur, 0);
 
-initialStates.forEach(state => increaseStateCount(state, 1));
+initialStates.forEach((state) => increaseStateCount(state, 1));
 
 const runGeneration = (n) => {
-    let day = 1
-    while(day <= n){
-        var generated = stateCounts[0];
-        leftShift();
-        stateCounts[6] += generated;
-        stateCounts[8] += generated;
-        day++;
-    }
-}
+  let day = 1;
+  while (day <= n) {
+    var generated = stateCounts[0];
+    leftShift();
+    stateCounts[6] += generated;
+    stateCounts[8] += generated;
+    day++;
+  }
+};
 
 //part1
 runGeneration(80);
 
-console.log(countStates())
+console.log(countStates());
 
 //part2 - since the first 80 day has been run
-runGeneration(256-80);
+runGeneration(256 - 80);
 
-console.log(countStates())
+console.log(countStates());
 
 /*
 use an array to remember the counts of the state, which has 0 to 8
