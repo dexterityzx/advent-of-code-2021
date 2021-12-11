@@ -167,8 +167,8 @@ const searchBasinSize = (startCoord) => {
       const key = coordKey(coord);
       // return if we have visited
       if (visited.has(key)) {
-          l--;
-          continue;
+        l--;
+        continue;
       }
       // remember what we have visited
       visited.add(key);
@@ -201,7 +201,7 @@ const calculateBasinScore = (lowPointCoords) => {
   const basinSizes = lowPointCoords.map(searchBasinSize);
   // we actually can store the highest three when search the basins
   // but I am laze at this moment
-  basinSizes.sort((a, b) => b - a); 
+  basinSizes.sort((a, b) => b - a);
   return basinSizes.slice(0, 3).reduce((prev, cur) => prev * cur, 1);
 };
 
