@@ -22,14 +22,14 @@ const R = initialEnergyLevelMap.length;
 const C = initialEnergyLevelMap[0].length;
 
 const levelUpAll = (map) => {
-  const readyToFlash = [];
+  const flashed = [];
   for (let r = 0; r < R; r++) {
     for (let c = 0; c < C; c++) {
       map[r][c] = (map[r][c] + 1) % 10;
-      if (map[r][c] == 0) readyToFlash.push([r, c]);
+      if (map[r][c] == 0) flashed.push([r, c]);
     }
   }
-  return readyToFlash;
+  return flashed;
 };
 
 const getCoordKey = (coord) => coord.join("_");
