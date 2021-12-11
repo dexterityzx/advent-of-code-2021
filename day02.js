@@ -1,5 +1,3 @@
-
-
 const commandStrings = [
   "forward 7",
   "down 1",
@@ -1006,22 +1004,22 @@ const commandStrings = [
 let xPosition = 0;
 let yPosition = 0;
 
-commandStrings.forEach(commandString => {
-    const command = commandString.split(' ');
-    const direction = command[0];
-    const distance = parseInt(command[1]);
+commandStrings.forEach((commandString) => {
+  const command = commandString.split(" ");
+  const direction = command[0];
+  const distance = parseInt(command[1]);
 
-    switch(direction){
-        case "forward": 
-            xPosition+=distance;
-            break;
-        case "up":
-            yPosition-=distance;
-            break;
-        case "down":
-            yPosition+=distance;
-            break;
-    }
+  switch (direction) {
+    case "forward":
+      xPosition += distance;
+      break;
+    case "up":
+      yPosition -= distance;
+      break;
+    case "down":
+      yPosition += distance;
+      break;
+  }
 });
 console.log(xPosition * yPosition);
 
@@ -1031,23 +1029,23 @@ xPosition = 0;
 yPosition = 0;
 let aim = 0;
 
-commandStrings.forEach(commandString => {
-    const command = commandString.split(' ');
-    const direction = command[0];
-    const distance = parseInt(command[1]);
+commandStrings.forEach((commandString) => {
+  const command = commandString.split(" ");
+  const direction = command[0];
+  const distance = parseInt(command[1]);
 
-    switch(direction){
-        case "forward": 
-            xPosition+=distance;
-            yPosition+=aim*distance;
-            break;
-        case "up":
-            aim-=distance;
-            break;
-        case "down":
-            aim+=distance;
-            break;
-    }
+  switch (direction) {
+    case "forward":
+      xPosition += distance;
+      yPosition += aim * distance;
+      break;
+    case "up":
+      aim -= distance;
+      break;
+    case "down":
+      aim += distance;
+      break;
+  }
 });
 
 console.log(xPosition * yPosition);
