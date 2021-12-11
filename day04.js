@@ -771,7 +771,7 @@ const findKthWinBoard = (k) => {
         //   console.log(statusBoards[i]);
         //   console.log(boards[i]);
         //   console.log(unmarkedNumbersOfBoard[i]);
-        isAlreadyBingoBoards.add(i)
+        isAlreadyBingoBoards.add(i);
         kthWin++;
         lastWinningScore = getUnmarkedSumOfBoard(i) * number;
         if (kthWin == k) return lastWinningScore;
