@@ -572,7 +572,7 @@ const countDiagonal = (coords) => {
   const fromY = coords[1];
   const toX = coords[2];
   const toY = coords[3];
-  if(toX === fromX || toY === fromY) return;
+  if (toX === fromX || toY === fromY) return;
 
   const slope = Math.abs((toY - fromY) / (toX - fromX));
   if (slope !== 1) return;
