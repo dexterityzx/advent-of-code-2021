@@ -117,4 +117,3 @@ const costs1 = new Array(
 for (let i = 1; i < costs1.length; i++) costs1[i] = i;
 
 console.log(findMinCost2(positions, costs1));
-
